@@ -29,7 +29,13 @@ node('maven') {
             sh(returnStdout: true, script: "echo ${newVersionString} > ${versionFileName}")
             def newversiondata = sh(returnStdout: true, script: "cat ${versionFileName} | head -1")
             println "newversiondata : "+newversiondata
-            sh(returnStdout: true, script: "git add version && git commit -m\"updating version data to ${newVersionString}\" && git push")
+            sshagent(['1c0e3c0a-f7bd-444e-918f-69799380d061']) {
+                sh ("git add version")
+                sh ("git commit -m\"updating version data to ${newVersionString}\"")
+                sh ("git push")
+            }
+
+            //sh(returnStdout: true, script: "git add version && git commit -m\"updating version data to ${newVersionString}\" && git push")
         }
 
     }
