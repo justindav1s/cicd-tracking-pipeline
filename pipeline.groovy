@@ -15,8 +15,11 @@ node('maven') {
             println fileList
             def workspace = pwd()
             def versionFileName = "version"
-            versionFileName = workspace+"/manifest-test/"+versionFileName
+            versionFileName = workspace+"/"+versionFileName
             println versionFileName
+            def versiondata = sh(returnStdout: true, script: "cat ${versionFileName} | head -1")
+            println versionFileName
+
             def versionFile = new File(versionFileName)
 
             lastLine = versionFile.readLines().get(versionFile.readLines().size().toInteger() - 1)
