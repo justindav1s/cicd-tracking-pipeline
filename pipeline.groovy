@@ -19,7 +19,7 @@ node('maven') {
             println versionFileName
             def versiondata = sh(returnStdout: true, script: "cat ${versionFileName} | head -1")
             println versiondata
-            def tokens = sh(returnStdout: true, script: "IFS=':' tokens=( ${versiondata}" )
+            def tokens = sh(returnStdout: true, script: "IFS=':' tokens=(${versiondata})" )
             println "token 1 " tokens[0]
             println "token 2 " tokens[2]
 
