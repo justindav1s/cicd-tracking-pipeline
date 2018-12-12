@@ -13,9 +13,11 @@ node('maven') {
         stage('loadfile') {
             def workspace = pwd()
             def versionFileName = "version"
+            versionFileName = workspace+"/"+versionFileName
+            println versionFileName
             def versionFile = new File(versionFileName)
 
-            lastLine = myFile.readLines().get(myFile.readLines().size().toInteger() - 1)
+            lastLine = versionFile.readLines().get(versionFile.readLines().size().toInteger() - 1)
             if (lastLine ==~ /.Fatal Error.*/ ){
                 println "Fatal error found"
                 println lastLine
