@@ -11,8 +11,9 @@ node('maven') {
         def commitId  = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
 
         stage('loadfile') {
-            myFileName = "version"
-            myFile = new File(myFileName)
+            def workspace = pwd()
+            def versionFileName = "version"
+            def versionFile = new File(versionFileName)
 
             lastLine = myFile.readLines().get(myFile.readLines().size().toInteger() - 1)
             if (lastLine ==~ /.Fatal Error.*/ ){
