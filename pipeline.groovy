@@ -22,8 +22,8 @@ node('maven') {
             println "versionnumber : "+versionnumber
             println "gitcommitid : "+gitcommitid
 
-            def newVersion = versionnumber.toInteger()
-            newVersion = newVersion++
+            int newVersion = versionnumber.toInteger()
+            newVersion = newVersion + 1
             def newVersionString = newVersion+":"+commitId
             println "newVersionString : "+newVersionString
 
