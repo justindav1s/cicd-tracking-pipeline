@@ -11,20 +11,20 @@ node('maven') {
         def commitId  = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
 
         stage('loadfile') {
-            def fileList = sh(returnStdout: true, script: "ls -ltr")
-            println fileList
             def workspace = pwd()
             def versionFileName = "version"
             versionFileName = workspace+"/"+versionFileName
             println versionFileName
             def versiondata = sh(returnStdout: true, script: "cat ${versionFileName} | head -1")
             println versiondata
-            println versiondata.tokenize(':')[0]
-            println versiondata.tokenize(':')[1]
-            def versionnumber = sh(returnStdout: true, script: 'echo versiondata | cut -d":" -f1' )
-            def gitcommitid = sh(returnStdout: true, script: 'echo ${versiondata} | cut -d":" -f2' )
-            println "versionnumber " versionnumber
-            println "gitcommitid " gitcommitid
+            def versionnumber = versiondata.tokenize(':')[0]
+            def gitcommitid = versiondata.tokenize(':')[1]
+            println "versionnumber : " versionnumber
+            println "gitcommitid : " gitcommitid
+
+            def newVersion = versionnumber++
+            def newVersionString = newVersion+":"+commitId
+            println "newVersionString : " newVersionString
 
         }
 
