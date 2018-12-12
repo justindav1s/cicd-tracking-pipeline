@@ -11,9 +11,11 @@ node('maven') {
         def commitId  = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
 
         stage('loadfile') {
+            def fileList = sh(returnStdout: true, script: "ls -ltr")
+            println fileList
             def workspace = pwd()
             def versionFileName = "version"
-            versionFileName = workspace+"/"+versionFileName
+            versionFileName = workspace+"/manifest-test/"+versionFileName
             println versionFileName
             def versionFile = new File(versionFileName)
 
