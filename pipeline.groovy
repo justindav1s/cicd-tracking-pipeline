@@ -13,8 +13,15 @@ node('maven') {
         stage('loadfile') {
             myFileName = "version"
             myFile = new File(myFileName)
-            echo "Building version : ${version}"
-            sh "${mvn} clean package -Dspring.profiles.active=dev -DskipTests"
+
+            lastLine = myFile.readLines().get(myFile.readLines().size().toInteger() - 1)
+            if (lastLine ==~ /.Fatal Error.*/ ){
+                println "Fatal error found"
+                println lastLine
+            } else{
+                println "nothing to see here"
+                println lastLine
+            }
         }
 
     }
