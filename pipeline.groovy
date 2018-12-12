@@ -26,7 +26,7 @@ node('maven') {
             newVersion = newVersion + 1
             def newVersionString = newVersion+":"+commitId
             println "newVersionString : "+newVersionString
-            sh(returnStdout: true, script: "cat ${newVersionString} > ${versionFileName}")
+            sh(returnStdout: true, script: "echo ${newVersionString} > ${versionFileName}")
             def newversiondata = sh(returnStdout: true, script: "cat ${versionFileName} | head -1")
             println "newversiondata : "+newversiondata
 
