@@ -2,14 +2,20 @@
 
 node('maven') {
 
+    git url: "${git_url}", branch: 'master', credentialsId: '1c0e3c0a-f7bd-444e-918f-69799380d061'
+    def commitId  = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
+
     dir("build")    {
-        git url: "${git_url}", branch: 'master', credentialsId: '1c0e3c0a-f7bd-444e-918f-69799380d061'
-        def commitId  = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
+
+        stage('build') {
+
+        }
+
+        stage('test') {
+
+        }
     }
 
-    stage('Checkout Source') {
-
-    }
 
     dir("build-metadata") {
 
