@@ -19,8 +19,8 @@ node('maven') {
             println versionFileName
             def versiondata = sh(returnStdout: true, script: "cat ${versionFileName} | head -1")
             println versiondata
-            println versiondata.testString.tokenize(':')[0]
-            println versiondata.testString.tokenize(':')[1]
+            println versiondata.tokenize(':')[0]
+            println versiondata.tokenize(':')[1]
             def versionnumber = sh(returnStdout: true, script: 'echo versiondata | cut -d":" -f1' )
             def gitcommitid = sh(returnStdout: true, script: 'echo ${versiondata} | cut -d":" -f2' )
             println "versionnumber " versionnumber
