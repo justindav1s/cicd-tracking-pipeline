@@ -19,17 +19,10 @@ node('maven') {
             println versionFileName
             def versiondata = sh(returnStdout: true, script: "cat ${versionFileName} | head -1")
             println versiondata
+            def tokens = sh(returnStdout: true, script: "IFS=':' tokens=( ${versiondata}" )
+            println "token 1 " tokens[0]
+            println "token 2 " tokens[2]
 
-            def versionFile = new File(versionFileName)
-
-            lastLine = versionFile.readLines().get(versionFile.readLines().size().toInteger() - 1)
-            if (lastLine ==~ /.Fatal Error.*/ ){
-                println "Fatal error found"
-                println lastLine
-            } else{
-                println "nothing to see here"
-                println lastLine
-            }
         }
 
     }
