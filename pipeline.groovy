@@ -30,6 +30,8 @@ node('maven') {
             def newversiondata = sh(returnStdout: true, script: "cat ${versionFileName} | head -1")
             println "newversiondata : "+newversiondata
             sshagent(['1c0e3c0a-f7bd-444e-918f-69799380d061']) {
+                sh ("git config --global user.email \"justinndavis@gmail.com\"")
+                sh ("git config --global user.name \"Justin Davis\"")
                 sh ("git add version")
                 sh ("git commit -m\"updating version data to ${newVersionString}\"")
                 sh ("git push")
