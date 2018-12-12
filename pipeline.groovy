@@ -19,12 +19,12 @@ node('maven') {
             println versiondata
             def versionnumber = versiondata.tokenize(':')[0]
             def gitcommitid = versiondata.tokenize(':')[1]
-            println "versionnumber : " versionnumber
-            println "gitcommitid : " gitcommitid
+            println "versionnumber : "+versionnumber
+            println "gitcommitid : "+gitcommitid
 
             def newVersion = versionnumber++
             def newVersionString = newVersion+":"+commitId
-            println "newVersionString : " newVersionString
+            println "newVersionString : "+newVersionString
 
         }
 
