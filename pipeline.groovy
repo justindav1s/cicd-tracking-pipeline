@@ -18,7 +18,7 @@ node('maven') {
             versionFileName = workspace+"/"+versionFileName
             println versionFileName
             def versiondata = sh(returnStdout: true, script: "cat ${versionFileName} | head -1")
-            println versionFileName
+            println versiondata
 
             def versionFile = new File(versionFileName)
 
