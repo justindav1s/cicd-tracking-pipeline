@@ -33,7 +33,7 @@ node('maven') {
                 sh ("git config --global user.email \"justinndavis@gmail.com\"")
                 sh ("git config --global user.name \"Justin Davis\"")
                 sh ("git add version")
-                sh ("git commit -m\"updating version data to ${newVersionString}\"")
+                sh ("git commit -m \"updating version data to ${newVersionString}\"")
                 sh ("git push")
             }
 
