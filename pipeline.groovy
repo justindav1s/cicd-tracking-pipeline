@@ -12,7 +12,7 @@ node('maven') {
 
         stage('loadfile') {
             myFileName = "version"
-            myFile = new File(myFileDirectory + myFileName)
+            myFile = new File(myFileName)
             echo "Building version : ${version}"
             sh "${mvn} clean package -Dspring.profiles.active=dev -DskipTests"
         }
