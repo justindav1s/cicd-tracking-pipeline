@@ -226,17 +226,12 @@ def manageVersionData(commitId, commitmsg, groupId, artifactId, project) {
     withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
         def github_repo = "manifest-test"
         def trackingrepo = "https://github.com/${GIT_USERNAME}/${github_repo}.git"
-        echo "1"
         git url: "${trackingrepo}", branch: 'master', credentialsId: 'github'
-        echo "2"
         def versionFileName = "version"
         versionFileName = groupId+"."+artifactId+"."+project+"."+versionFileName
-        echo "3"
         @Field def timeStamp = Calendar.getInstance().getTime().format('ddMMyy-HH:mm:ss',TimeZone.getTimeZone('GMT'))
-        echo "4"
         def newVersionString = "{ \\\"build\\\": \\\"${env.BUILD_NUMBER}\\\", \\\"timestamp\\\": \\\"${timeStamp}\\\", \\\"commitId\\\": \\\"${commitId}\\\", \\\"commitMsg\\\": \\\"${commitmsg}\\\"}"
         sh(returnStdout: true, script: "echo ${newVersionString} >> ${versionFileName}")
-        echo "5"
         sh (returnStdout: true, script: "git config user.email \"jenkins@${GIT_USERNAME}.dev\"; git config user.name \"${GIT_USERNAME}\"")
         sh (returnStdout: true, script: "git add ${versionFileName}")
         sh (returnStdout: true, script: "git commit -m \"version data update for ${artifactId} to ${env.BUILD_NUMBER}:${commitId}\" || true")
