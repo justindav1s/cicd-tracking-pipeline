@@ -1,1 +1,2 @@
 { "build": "2", "timestamp": "190619-08:36:39", "commitId": "af18adb", "commitMsg": "gitops pipeline"}
+{ "build": "3", "timestamp": "040719-13:19:05", "commitId": "139efeb", "commitMsg": "adding sso support to gateway using spring security config"}
