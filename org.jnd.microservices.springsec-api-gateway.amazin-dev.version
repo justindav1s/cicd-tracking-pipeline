@@ -1,1 +1,2 @@
 { "build": "4", "timestamp": "040719-14:58:25", "commitId": "0d8758c", "commitMsg": "adding sso support to gateway using spring security config"}
+{ "build": "5", "timestamp": "040719-16:17:43", "commitId": "bfcecbc", "commitMsg": "adding sso support to gateway using spring security config"}
